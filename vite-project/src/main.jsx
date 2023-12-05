@@ -1,39 +1,44 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from './pages/App.jsx'
-import NFL from './pages/NFL.jsx'
-import MLB from './pages/MLB.jsx'
-import F1 from './pages/F1.jsx'
-import NBA from './pages/NBA.jsx'
-import './index.css'
+import App from "./pages/App.jsx";
+import NFL from "./pages/NFL.jsx";
+import MLB from "./pages/MLB.jsx";
+import F1 from "./pages/F1.jsx";
+import NBA from "./pages/NBA.jsx";
+import Nav from "./pages/Nav.jsx";
+import "./index.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <App />,
   },
   {
     path: "home",
-    element: <App />
+    element: <App />,
   },
   {
     path: "nfl",
-    element: <NFL />
+    element: <NFL />,
   },
   {
     path: "mlb",
-    element: <MLB />
+    element: <MLB />,
   },
   {
     path: "f1",
-    element: <F1 />
+    element: <F1 />,
   },
   {
     path: "nba",
-    element: <NBA />
-  }
-])
+    element: <NBA />,
+  },
+  {
+    path: "nav",
+    element: <Nav />,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={router} />);

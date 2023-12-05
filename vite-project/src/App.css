@@ -1,8 +1,7 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  width: 100%;
 }
 
 .logo {
@@ -39,4 +38,15 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.jumbotron-under-nav {
+  padding-top: 70px; /* Adjust this value based on your Navbar's height */
+}
+
+.card-img {
+  width: 100%; /* Adjust the width as needed */
+  min-height: 200px;
+  max-height: 200px; /* Adjust the height as needed */
+  object-fit: cover; /* This ensures the image covers the area without stretching */
 }
