@@ -4,6 +4,15 @@
   width: 100%;
 }
 
+/* .headerImage {
+  display: flex;
+  width: 95vw;
+  height: 65vh;
+  background-color: white;
+  border-radius: 5vw;
+  align-items: center;
+} */
+
 .logo {
   height: 6em;
   padding: 1.5em;
