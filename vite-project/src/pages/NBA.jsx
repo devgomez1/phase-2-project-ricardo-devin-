@@ -358,6 +358,23 @@ function NBA () {
           <div class="card-deck">
             {mapCards}
             </div>
+            <div class='searchGames'>Search For Past NBA Games by Date
+            <div class='searchFormContainer'>
+              <form class='searchForm' onSubmit={handleSubmitDate}>
+              <label>
+                Start Date:
+                <input type="text" class='dateSlot' placeholder="Month" value={startMonth} onChange={e => setStartMonth(e.target.value)} />
+                <input type="text" class='dateSlot' placeholder="Day" value={startDay} onChange={e => setStartDay(e.target.value)} />
+                <input type="text" class='dateSlot' placeholder="Year" value={startYear} onChange={e => setStartYear(e.target.value)} />
+              </label>
+                <button type="submit">Search</button>
+            </form>
+            </div>
+            {mapGames()}
+            </div>
+            <div class='commentSection'>
+              Share thoughts on Previous Seasons
+            </div>
           <div>
           <Footer />
         </div>

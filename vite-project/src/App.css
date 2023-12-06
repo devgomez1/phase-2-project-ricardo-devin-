@@ -60,6 +60,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
 .summary,
@@ -70,3 +71,26 @@ select {
   align-items: center;
 }
 
+.searchGames {
+  display: block;
+  justify-content: center;
+  border-color: black;
+  align-content: center;
+  align-items: center;
+}
+
+.dateSlot {
+  display: block;
+  text-align: center;
+}
+
+.searchGames {
+  /* Add any other styles for the searchGames container */
+  text-align: center; /* Center the text inside the container */
+  justify-content: center;
+}
+
+.searchFormContainer {
+  display: block;
+  justify-content: center; /* Make the container inline-block */
+}
