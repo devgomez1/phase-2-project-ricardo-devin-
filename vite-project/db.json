@@ -1,0 +1,24 @@
+{
+  "nba": [
+    {
+      "id": 1,
+      "username": "rmerlin99",
+      "season": "2018-19",
+      "comments": "I think this season was great."
+    },
+    {
+      "username": "RicTaco21",
+      "season": "2021-22",
+      "comments": "Awesome season.",
+      "id": 2
+    }
+  ],
+  "f1": [
+    {
+      "id": 1,
+      "username": "deving",
+      "season": "2018",
+      "comments": "I think that this season was amazing."
+    }
+  ]
+}

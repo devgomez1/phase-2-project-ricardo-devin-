@@ -3,12 +3,12 @@ import React from "react";
 function Nav() {
   return (
     <nav>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="#">
           NPSE
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarNav"
@@ -16,32 +16,22 @@ function Nav() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">
-                Home <span class="sr-only">(current)</span>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item active">
+              <a className="nav-link" href="home">
+                Home
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="nba">
+            <li className="nav-item">
+              <a className="nav-link" href="nba">
                 NBA
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="nfl">
-                NFL
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="mlb">
-                MLB
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="f1">
+            <li className="nav-item">
+              <a className="nav-link" href="f1">
                 F1
               </a>
             </li>

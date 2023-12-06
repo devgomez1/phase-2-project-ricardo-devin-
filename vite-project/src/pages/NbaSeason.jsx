@@ -10,8 +10,6 @@ function NbaSeason({ item, nbaRecords }) {
 
     const[displayCard, setDisplayCard] = useState(false)
 
-    console.log(season)
-    console.log(teams)
 
     // const filterTeam 
 
@@ -19,7 +17,6 @@ function NbaSeason({ item, nbaRecords }) {
     //     return <div>{item.name}</div>
     // })
 
-    console.log(seasonIndex)
         
     useEffect(() => {
         const seasonData = nbaRecords[seasonIndex].find((team) => team.name === teams);
@@ -53,13 +50,11 @@ function NbaSeason({ item, nbaRecords }) {
         const selectedTeam = e.target.value;
     
         if (selectedTeam === '0') {
-          // Reset team-related states when the default option is selected
           setTeams('');
           setLogo('');
           setDisplayRecord(0);
         } else {
           setTeams(selectedTeam);
-          // Set the logo based on the selected team
           setLogo(getLogoUrl(selectedTeam));
         }
       };
@@ -132,21 +127,50 @@ function NbaSeason({ item, nbaRecords }) {
 
 
     return (
-    <div className={`hoverable ${displayCard ? 'clicked' : ''}`}>
+    <div className={`nbaCard ${displayCard ? 'clicked' : ''}`}>
         <img
-            class="card-img"
+            className="card-img"
             src={item.img}
             alt="Card image cap"
             onClick={() => setDisplayCard(!displayCard)}
             />
-        <div class='year'>{item.year} - {parseInt(item.year) + 1}</div>
+        <div className='year'>{item.year} - {parseInt(item.year) + 1}</div>
         {
         displayCard
         ?
         <div>
-        <div class='champs'>Champions: {item.champs}</div>
-        <div class='mvp'>Season MVP: {item.mvp}</div>
+        {item.champs !== '' 
+        ? 
+        <div>
+        <div className='champs'>Champions: {item.champs}</div>
+        </div>
+        :
+        ''
+        }
+        {item.mvp !== '' 
+        ? 
+        <div>
+        <div className='mvp'>Most Valuable Player: {item.mvp}</div>
+        </div>
+        :
+        ''
+        }
+        {item.dpoy !== '' 
+        ? 
+        <div>
+        <div className='dpoy'>Defensive Player of the Year: {item.dpoy}</div>
+        </div>
+        :
+        ''
+        }
+        {item.link !== '' 
+        ? 
+        <div>
         <div>Season Recap:</div><a href={item.link} className='summary'>{item.link}</a>
+        </div>
+        :
+        ''
+        }
         <select onChange={handleTeamChange} value={teams} onClick={() => setSeason(prevSeason => item.year)}>
             <option value='0'>Search Teams Season Record</option>
             <option value='Atlanta Hawks'>Atlanta Hawks</option>

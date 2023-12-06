@@ -14,6 +14,7 @@ function NBA () {
     const[searchDate, setSearchDate] = useState('')
 
     const[gamesFromDay, setGamesFromDay] = useState([])
+    
 
     useEffect(() => {
         fetch(`https://www.balldontlie.io/api/v1/games/?start_date=${searchDate}&end_date=${searchDate}`)
@@ -35,72 +36,29 @@ function NBA () {
         }
         return gamesFromDay.data.map(game => {
             return (
-            <div key={game.id} className='score'>{game.home_team_score} {game.home_team.abbreviation} vs {game.visitor_team.abbreviation} {game.visitor_team_score}</div>
+            <div className='scoreFolder'>
+              <div key={game.id} className='score'>{game.home_team_score} {game.home_team.abbreviation} vs {game.visitor_team.abbreviation} {game.visitor_team_score}</div>
+            </div>
             );
         })
     }
-
-
-
-    
-    // const[firstNameInput, setFirstNameInput] = useState('')
-
-    // const[lastNameInput, setLastNameInput] = useState('')
-
-    // const[searchFirstName, setSearchFirstName] = useState('')
-    // const[searchLastName, setSearchLastName] = useState('')
-
-    // const[playerList, setPlayerList] = useState({})
-
-    // const[playerData, setPlayerData] = useState([])
-
-    // function handleSubmitName(e) {
-    //     e.preventDefault()
-    //     setSearchFirstName(firstNameInput)
-    //     setSearchLastName(lastNameInput)
-    // }
-
-    // console.log(firstNameInput)
-    // console.log(lastNameInput)
-    // console.log(searchFirstName)
-    // console.log(searchLastName)
-
-    // useEffect(() => {
-    //     fetch ('https://www.balldontlie.io/api/v1/players')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setPlayerData(data)
-    //     })
-    // }, [])
-
-// data[1].first_name
-
-// console.log(playerData)
-
-// useEffect(() => {
-//     if (searchFirstName && playerData.data) {
-//         const filteredPlayers = playerData.data.filter(item => item.first_name.toLowerCase().includes(searchFirstName.toLowerCase()));
-//         console.log(filteredPlayers);
-//     }
-// }, [searchFirstName, playerData]);
-
-
-
-
-
 
     const cardArray = [
         {
             'img': 'https://www.wowktv.com/wp-content/uploads/sites/52/2023/12/656ea742376a73.51521956.jpeg?w=2560&h=1440&crop=1',
             'year': '2023',
-            'champs': 'TBD',
-            'mvp': 'TBD'
+            'champs': '',
+            'mvp': '',
+            'dpoy': '',
+            'link': ''
+
         }, 
         {
             'img': 'https://cdn.nba.com/manage/2023/05/jokic-faceup.jpg',
             'year': '2022',
             'champs': 'Denver Nuggets',
             'mvp': 'Joel Embiid',
+            'dpoy': 'Jaren Jackson Jr.',
             'link': 'https://www.nba.com/news/history-season-review-2022-23'
         }, 
         {
@@ -108,6 +66,7 @@ function NBA () {
             'year': '2021',
             'champs': 'Golden State Warriors',
             'mvp': 'Nikola Jokic',
+            'dpoy': 'Marcus Smart',
             'link': 'https://www.nba.com/news/history-season-review-2021-22'
         }, 
         {
@@ -115,6 +74,7 @@ function NBA () {
             'year': '2020',
             'champs': 'Milwaukee Bucks',
             'mvp': 'Nikola Jokic',
+            'dpoy': 'Rudy Gobert',
             'link': 'https://www.nba.com/news/history-season-review-2020-21'
         }, 
         {
@@ -122,6 +82,7 @@ function NBA () {
             'year': '2019',
             'champs': 'Los Angeles Lakers',
             'mvp': 'Giannis Antetokounmpo',
+            'dpoy': 'Giannis Antetokounmpo',
             'link': 'https://www.nba.com/news/history-season-review-2019-20'
         }, 
         {
@@ -129,6 +90,7 @@ function NBA () {
             'year': '2018',
             'champs': 'Toronto Raptors',
             'mvp': 'Giannis Antetokounmpo',
+            'dpoy': 'Rudy Gobert',
             'link': 'https://www.nba.com/news/history-season-review-2018-19'
         }, 
         
@@ -330,17 +292,73 @@ function NBA () {
     ]
       
 
+    const mapCards = cardArray.map(item => <NbaSeason key={item.name} nbaRecords={nbaRecords} item={item} />)
 
-    const mapCards = cardArray.map(item => <NbaSeason nbaRecords={nbaRecords} item={item} />)
+
+
+    const [nameInput, setNameInput] = useState('')
+    const [commentInput, setCommentInput] = useState('')
+    const [selectedSeason, setSelectedSeason] = useState('')
+    const [rate, setRate] = useState(0)
+    const [previousPosts, setPreviousPosts] = useState([])
+
+    const [likes, setLikes] = useState(0)
+
+    useEffect(() => {
+      fetch ('http://localhost:3000/nba')
+      .then( res => res.json())
+      .then( data => {
+        setPreviousPosts( data )
+      })
+    }, [])
+
+
+
+    const showPosts = previousPosts.map(post => {
+          return (
+          <div>
+            <div>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯</div>
+            <p>User: {post.username}</p>
+            <p>Season: {post.season}</p>
+            <p>{post.comments}</p>
+          </div>
+          )
+    })
+
+    function handleSubmit(e) {
+      e.preventDefault()
+      const newPost = {
+        'username': nameInput,
+        'season': selectedSeason,
+        'comments': commentInput,
+        'likes': 0
+      }
+
+      fetch ('http://localhost:3000/nba', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          'username': nameInput,
+          'season': selectedSeason,
+          'comments': commentInput,
+        })
+      })
+
+      setPreviousPosts([...previousPosts, newPost])
+      setNameInput('')
+      setCommentInput('')
+    }
 
 
     return (
         
 
-        <div>
+        <div className='mainNBApage'>
           <Nav />
           <div
-            class="jumbotron jumbotron-fluid"
+            className="jumbotron jumbotron-fluid"
             style={{
               backgroundImage:
                 "url('https://d1l5jyrrh5eluf.cloudfront.net/wp-content/uploads/2014/12/lebron-james.jpg')",
@@ -348,32 +366,51 @@ function NBA () {
               backgroundPosition: "50% 35%",
             }}
           >
-            <div class="NbaCard" style={{ color: "white" }}>
-              <h1 class="display-4">NBA</h1>
-              <p class="lead">
+            <div className="NbaCard" style={{ color: "white" }}>
+              <h1 className="display-4">NBA</h1>
+              <p className="lead">
                 The National Basketball Association (NBA) is a professional basketball league made up of 30 teams based across the United States and Canada. 
               </p>
             </div>
           </div>
-          <div class="card-deck">
+          <div className="card-deck">
             {mapCards}
             </div>
-            <div class='searchGames'>Search For Past NBA Games by Date
-            <div class='searchFormContainer'>
-              <form class='searchForm' onSubmit={handleSubmitDate}>
+            <h1>⎯⎯⎯⎯⎯⎯⎯</h1>
+            <h2 className='searchGames'>Search For Past NBA Games by Date</h2>
+            <div className='searchFormContainer'>
+              <form className='searchForm' onSubmit={handleSubmitDate}>
               <label>
-                Start Date:
-                <input type="text" class='dateSlot' placeholder="Month" value={startMonth} onChange={e => setStartMonth(e.target.value)} />
-                <input type="text" class='dateSlot' placeholder="Day" value={startDay} onChange={e => setStartDay(e.target.value)} />
-                <input type="text" class='dateSlot' placeholder="Year" value={startYear} onChange={e => setStartYear(e.target.value)} />
-              </label>
+                <input type="text" className='dateSlot' placeholder="Month" value={startMonth} onChange={e => setStartMonth(e.target.value)} />
+                <input type="text" className='dateSlot' placeholder="Day" value={startDay} onChange={e => setStartDay(e.target.value)} />
+                <input type="text" className='dateSlot' placeholder="Year" value={startYear} onChange={e => setStartYear(e.target.value)} />
                 <button type="submit">Search</button>
+              </label>
             </form>
             </div>
             {mapGames()}
+            <h1>⎯⎯⎯⎯⎯⎯⎯</h1>
+            <div className='commentInputSection'>
+              <h2 className='shareThoughts'>Share thoughts on different NBA Seasons!</h2>
+              <form className='postForm' onSubmit={handleSubmit}>
+                <h5 className='newPost'>Enter your desired display Name: </h5>
+                <input type='text' value={nameInput} placeholder='Your Display Name' onChange={(e) => setNameInput(e.target.value)}></input>
+                <h5 className='newPost'>Select the season you want to talk about!</h5>
+                <select onChange={(e) => setSelectedSeason(e.target.value)}>
+                    <option>2018-19</option>
+                    <option>2019-20</option>
+                    <option>2020-21</option>
+                    <option>2021-22</option>
+                    <option>2022-23</option>
+                    <option>2023-24</option>
+                  </select>
+                <h5 className='newPost'>Share your thoughts with our community!</h5>
+                <input type='text' class='commentInput' value={commentInput} placeholder='Give us your thoughts' onChange={(e) => setCommentInput(e.target.value)}></input>
+                <button class='newPost' type='submit'>POST</button>
+              </form>
             </div>
-            <div class='commentSection'>
-              Share thoughts on Previous Seasons
+            <div className='commentsContainer'>
+            {showPosts}
             </div>
           <div>
           <Footer />

@@ -1,20 +1,9 @@
+
+
 #root {
   margin: 0 auto;
   text-align: center;
   width: 100%;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 .card {
@@ -25,10 +14,12 @@
   color: #888;
 }
 
+
 .jumbotron-under-nav {
   padding-top: 70px; /* Adjust this value based on your Navbar's height */
 }
 
+/* ric */
 .card-img {
   width: 100%; /* Adjust the width as needed */
   min-height: 200px;
@@ -36,33 +27,33 @@
   object-fit:contain; /* This ensures the image covers the area without stretching */
 }
 
-.hoverable {
+/* ric */
+.nbaCard {
   padding: 1vw;
   margin: 1vw;
   border-radius: 10px;
-  background-color: rgb(241, 174, 129);
+  background-color: rgb(221, 118, 118);
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease-in-out; /* Move transition here for consistency */
 }
 
-.hoverable:hover {
+/* ric */
+.nbaCard:hover {
   transform: scale(1.05, 1); /* Scale on both axes on hover */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.hoverable.clicked {
-  transform: scale(1, 1.05); /* Only scale on the Y-axis on click */
-}
 
-
+/* ric */
 .card-deck {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family:Verdana, Geneva, Tahoma, sans-serif
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/* ric */
 .summary,
 select {
   display:table-cell;
@@ -71,26 +62,72 @@ select {
   align-items: center;
 }
 
+/* ric */
 .searchGames {
-  display: block;
   justify-content: center;
   border-color: black;
-  align-content: center;
+  border-width: 20px;
   align-items: center;
 }
 
-.dateSlot {
+/* ric */
+.dateSlot { 
   display: block;
   text-align: center;
+  border-radius: 100px;
+  padding: 0.25vw;
+  margin: 0.5vw
 }
 
+/* ric */
 .searchGames {
   /* Add any other styles for the searchGames container */
   text-align: center; /* Center the text inside the container */
+  font-weight: bolder;
+}
+
+/* ric */
+.searchFormContainer {
+  justify-content: center; /* This property is used in flex containers */
+}
+
+/* ric */
+.searchForm {
+  text-align: center; /* Center the form elements */
+}
+
+/* ric */
+.shareThoughts {
+  font-weight:bold;
+}
+
+/* ric */
+.newPost {
+  padding: 1vw;
+  align-items: center;
   justify-content: center;
 }
 
-.searchFormContainer {
-  display: block;
-  justify-content: center; /* Make the container inline-block */
+/* ric */
+.mainNBApage {
+  background-color: rgb(255, 255, 255);
 }
+
+.commentInput {
+  min-width: 30%;
+  min-height: 3vw; 
+  z-index: 10;
+  padding: 10px; 
+  resize: vertical; 
+  overflow-y: auto;
+}
+
+.postForm {
+  align-items: center;
+  justify-content: center;
+}
+
+.score {
+  padding: 1vw;
+}
+
