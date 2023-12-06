@@ -1,18 +1,8 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  width: 100%;
 }
-
-/* .headerImage {
-  display: flex;
-  width: 95vw;
-  height: 65vh;
-  background-color: white;
-  border-radius: 5vw;
-  align-items: center;
-} */
 
 .logo {
   height: 6em;
@@ -27,21 +17,6 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
@@ -49,3 +24,49 @@
 .read-the-docs {
   color: #888;
 }
+
+.jumbotron-under-nav {
+  padding-top: 70px; /* Adjust this value based on your Navbar's height */
+}
+
+.card-img {
+  width: 100%; /* Adjust the width as needed */
+  min-height: 200px;
+  max-height: 10vw; /* Adjust the height as needed */
+  object-fit:contain; /* This ensures the image covers the area without stretching */
+}
+
+.hoverable {
+  padding: 1vw;
+  margin: 1vw;
+  border-radius: 10px;
+  background-color: rgb(241, 174, 129);
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease-in-out; /* Move transition here for consistency */
+}
+
+.hoverable:hover {
+  transform: scale(1.05, 1); /* Scale on both axes on hover */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hoverable.clicked {
+  transform: scale(1, 1.05); /* Only scale on the Y-axis on click */
+}
+
+
+.card-deck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary,
+select {
+  display:table-cell;
+  margin-top: 10px; /* Adjust the margin as needed */
+  justify-content: center;
+  align-items: center;
+}
+
